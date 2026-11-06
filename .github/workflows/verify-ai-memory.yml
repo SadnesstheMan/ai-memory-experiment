@@ -1,0 +1,44 @@
+name: Validate AI memory
+on:
+  push:
+    paths:
+      - ai_memory.json
+      - .github/workflows/verify-ai-memory.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate JSON memory and history
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          from datetime import datetime
+          from pathlib import Path
+          p = Path("ai_memory.json")
+          memory = json.loads(p.read_text(encoding="utf-8"))
+          assert memory["identity"] == "Independent AI experiment", "identity missing or modified"
+          assert memory["schema_version"] == 1, "unexpected schema version"
+          rev = memory["revision"]
+          assert type(rev) is int and rev >= 1, "revision must be a positive integer"
+          history = memory["history"]
+          assert isinstance(history, list) and len(history) == rev, "history length must equal revision"
+          assert memory.get("checkpoint", "").startswith("STAGE5_"), "Stage 5 checkpoint missing"
+          assert memory.get("stage6_handoff", "").startswith("STAGE6_HANDOFF_"), "Stage 6 handoff missing"
+          seen = set()
+          for i, event in enumerate(history, 1):
+              assert event["revision"] == i, "revision sequence invalid"
+              event_id = event["event_id"]
+              assert event_id not in seen, "duplicate event ID"
+              seen.add(event_id)
+              assert event["actor"] and event["action"] and event["summary"], "incomplete event"
+              assert re.fullmatch(r"[0-9a-f]{40}", event["previous_blob_sha"]), "invalid previous blob SHA"
+              datetime.fromisoformat(event["timestamp"].replace("Z", "+00:00"))
+          assert memory["last_updated"] == history[-1]["timestamp"], "last_updated mismatch"
+          print("Validation passed:", rev, "revisions", len(history), "events")
+          PY
