@@ -2,14 +2,14 @@
   "identity": "Independent AI experiment",
   "stage": 9,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage9_conflict_test_ready",
+  "status": "stage9_controlled_collision_in_progress",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:05:13.948Z",
+  "last_updated": "2026-11-06T03:05:42.708Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 8,
-  "updated_by": "ChatGPT Stage 9 initializer",
+  "revision": 9,
+  "updated_by": "Stage 9 simulated writer A",
   "history": [
     {
       "revision": 1,
@@ -82,6 +82,15 @@
       "action": "stage9_conflict_testing_initialized",
       "summary": "Started Stage 9 optimistic-concurrency and stale-SHA recovery tests; retained Stage 8 acceptance and all previous memory checkpoints.",
       "previous_blob_sha": "4c9a510695e9e9d081c726cd337e24be0edb541c"
+    },
+    {
+      "revision": 9,
+      "event_id": "stage9-sim-a-20261106030542708",
+      "timestamp": "2026-11-06T03:05:42.708Z",
+      "actor": "Stage 9 simulated writer A",
+      "action": "stage9_controlled_writer_a_commit",
+      "summary": "Simulated writer A committed its unique value from the Stage 9 starting snapshot; writer B is expected to try an obsolete SHA next.",
+      "previous_blob_sha": "0d3f4800fdcb75ccabc31466dfe54719a7feb403"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -106,9 +115,17 @@
   },
   "stage9": {
     "guide": "STAGE9_CONCURRENCY_TEST.md",
-    "status": "controlled_collision_not_tested",
+    "status": "controlled_first_writer_committed",
     "trials": {
-      "controlled": {},
+      "controlled": {
+        "writer_a": {
+          "value": "S9_A_20261106030542708",
+          "source_revision": 8,
+          "source_blob_sha": "0d3f4800fdcb75ccabc31466dfe54719a7feb403",
+          "committed": true
+        },
+        "test_kind": "sequential_stale_sha_simulation"
+      },
       "cross_instance": {}
     },
     "checks": {
