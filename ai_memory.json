@@ -1,15 +1,15 @@
 {
   "identity": "Independent AI experiment",
-  "stage": 9,
+  "stage": 10,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage9_controlled_test_passed",
+  "status": "stage10_prepared",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:16:48.411Z",
+  "last_updated": "2026-11-06T03:23:19.106Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 12,
-  "updated_by": "Stage 9 independent writer B",
+  "revision": 13,
+  "updated_by": "ChatGPT Stage 9 closure and Stage 10 preparation",
   "history": [
     {
       "revision": 1,
@@ -118,6 +118,15 @@
       "action": "stage9_cross_instance_writer_b_conflict_recovered",
       "summary": "GitHub returned HTTP 409 for writer B's original revision-10 blob SHA. Re-fetched revision 11, retained writer A, and rebased writer B with the new blob SHA. Earlier independent B preparation was not verified.",
       "previous_blob_sha": "5e77756016a72de5839376d00853fc99d454aeb2"
+    },
+    {
+      "revision": 13,
+      "event_id": "stage9-closure-stage10-prep-20261106032319106",
+      "timestamp": "2026-11-06T03:23:19.106Z",
+      "actor": "ChatGPT Stage 9 closure and Stage 10 preparation",
+      "action": "stage9_completed_stage10_prepared",
+      "summary": "Recorded user's correction: writer B's independently prepared proposal was mislabeled Writer A; preserved the original audit note, confirmed both values and Stage 9 validation, closed Stage 9, and prepared Stage 10 safe recovery tests.",
+      "previous_blob_sha": "ccc43c063e86191518aff53a20217b0a4108ca48"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -142,7 +151,7 @@
   },
   "stage9": {
     "guide": "STAGE9_CONCURRENCY_TEST.md",
-    "status": "cross_instance_recovery_pending_validation",
+    "status": "completed",
     "trials": {
       "controlled": {
         "writer_a": {
@@ -180,15 +189,44 @@
           "reconciled_from_revision": 11,
           "reconciled_blob_sha": "5e77756016a72de5839376d00853fc99d454aeb2",
           "committed": true,
-          "preparation_note": "Writer B proposal was reconstructed from the cached revision 10 snapshot in this conversation; prior independently prepared Writer B artifact was not available."
+          "preparation_note": "Writer B proposal was reconstructed from the cached revision 10 snapshot in this conversation; prior independently prepared Writer B artifact was not available.",
+          "preparation_note_correction": "User clarified that writer B's proposal was independently preserved; writer B had accidentally labeled its proposal as Writer A, and the label was not corrected before the test. This correction supersedes the earlier independence caveat; the original note is retained for audit."
         }
       }
     },
     "checks": {
       "controlled_stale_sha_rejected": "passed",
       "controlled_rebase_preserved_both": "passed",
-      "real_cross_instance_conflict": "stale_sha_rejected_and_reconciled_preparation_independence_not_verified",
-      "github_validation": "not_tested"
+      "real_cross_instance_conflict": "passed_with_user_confirmed_independent_preparation",
+      "github_validation": "passed_revision_12"
+    },
+    "audit_correction": {
+      "reported_by": "user",
+      "issue": "writer_b_proposal_mislabeled_as_writer_a",
+      "explanation": "Writer B's independently preserved proposal was mistakenly labeled Writer A before the test; no rename occurred before execution.",
+      "supersedes": "writer_b.preparation_note and revision 12's statement that independent B preparation was unverified",
+      "evidence": "User-confirmed independent preparation; GitHub commits independently verify values and conflict recovery but cannot prove the pre-commit preparation artifacts.",
+      "recorded_at": "2026-11-06T03:23:19.106Z"
+    },
+    "completion": {
+      "completed_at": "2026-11-06T03:23:19.106Z",
+      "final_test_revision": 12,
+      "writer_a_commit": "45140890e07f9c5fb92789a2a77e1c20910cdd1a",
+      "writer_b_commit": "46a20f869ad66a1d05d54ffb04d6de7e06200ad5",
+      "validation_run": "https://github.com/SadnesstheMan/ai-memory-experiment/actions/runs/42155569774",
+      "result": "completed",
+      "qualification": "Independent proposals confirmed by user; GitHub verified preservation and final validation. HTTP 409 described in stored writer log; not visible in Git commit diff."
+    }
+  },
+  "stage10": {
+    "status": "prepared_not_tested",
+    "guide": "STAGE10_RECOVERY_TEST.md",
+    "objective": "Safe snapshot recovery and isolated data-corruption detection without modifying canonical memory",
+    "checks": {
+      "read_only_snapshot_recovery": "not_tested",
+      "isolated_corruption_detection": "not_tested",
+      "fixture_replay_preserves_history": "not_tested",
+      "canonical_data_safety": "not_tested"
     }
   }
 }
