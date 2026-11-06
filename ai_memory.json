@@ -2,14 +2,14 @@
   "identity": "Independent AI experiment",
   "stage": 11,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage11_replay_initialized",
+  "status": "stage11_continuation_testing",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:37:05.667Z",
+  "last_updated": "2026-11-06T03:39:07.478Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 15,
-  "updated_by": "ChatGPT Stage 11 initializer",
+  "revision": 16,
+  "updated_by": "ChatGPT Stage 11 continuation tester",
   "history": [
     {
       "revision": 1,
@@ -185,6 +185,54 @@
               "corruption_detection": "not_tested",
               "continuation_replay": "not_tested",
               "github_actions": "not_verified"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "revision": 16,
+      "event_id": "stage11-continuation-20261106033907478",
+      "timestamp": "2026-11-06T03:39:07.478Z",
+      "actor": "ChatGPT Stage 11 continuation tester",
+      "action": "stage11_second_replay_event",
+      "summary": "Added a second machine-readable replay event and recorded initial anchor, offline recovery, and isolated corruption checks; continuation awaits CI verification.",
+      "previous_blob_sha": "078473a9b793094ace57257cec257a9b3c0e2142",
+      "replay_ops": [
+        {
+          "op": "set",
+          "field": "revision",
+          "value": 16
+        },
+        {
+          "op": "set",
+          "field": "last_updated",
+          "value": "2026-11-06T03:39:07.478Z"
+        },
+        {
+          "op": "set",
+          "field": "updated_by",
+          "value": "ChatGPT Stage 11 continuation tester"
+        },
+        {
+          "op": "set",
+          "field": "status",
+          "value": "stage11_continuation_testing"
+        },
+        {
+          "op": "set",
+          "field": "stage11",
+          "value": {
+            "status": "continuation_event_committed",
+            "guide": "STAGE11_RECOVERY_PROTOCOL.md",
+            "validator": "tools/stage11_recover.py",
+            "anchor_revision": 14,
+            "checks": {
+              "anchor_integrity": "passed_verified_ci",
+              "replay_equivalence": "passed_revision_15",
+              "corruption_detection": "passed_3_of_3_isolated_fixtures",
+              "continuation_replay": "awaiting_revision_16_ci",
+              "github_actions": "passed_revision_15"
             }
           }
         }
@@ -642,16 +690,16 @@
     }
   },
   "stage11": {
-    "status": "replay_bootstrap_committed",
+    "status": "continuation_event_committed",
     "guide": "STAGE11_RECOVERY_PROTOCOL.md",
     "validator": "tools/stage11_recover.py",
     "anchor_revision": 14,
     "checks": {
-      "anchor_integrity": "not_verified",
-      "replay_equivalence": "not_verified",
-      "corruption_detection": "not_tested",
-      "continuation_replay": "not_tested",
-      "github_actions": "not_verified"
+      "anchor_integrity": "passed_verified_ci",
+      "replay_equivalence": "passed_revision_15",
+      "corruption_detection": "passed_3_of_3_isolated_fixtures",
+      "continuation_replay": "awaiting_revision_16_ci",
+      "github_actions": "passed_revision_15"
     }
   }
 }
