@@ -42,3 +42,15 @@ Open an independent ChatGPT conversation with GitHub access, then ask:
 Then open the original conversation and ask it to fetch `ai_memory.json` independently and verify the nonce, history event, revision, and preserved checkpoint fields.
 
 **Privacy:** This is a public repository. Never store passwords, API tokens, personal secrets, or sensitive conversation content in it.
+
+## Stage 11 replay requirement (applies after revision 14)
+
+**Mandatory for all revisions 15 and later:** Before editing `ai_memory.json`, read [STAGE11_RECOVERY_PROTOCOL.md](./STAGE11_RECOVERY_PROTOCOL.md) and the offline verifier [tools/stage11_recover.py](./tools/stage11_recover.py). In addition to the SHA-safe update procedure above:
+
+- Treat `recovery.anchor_snapshot`, `recovery.anchor_revision`, `recovery.anchor_blob_sha`, and `recovery.format` as immutable. The embedded revision-14 anchor is a checkpoint, not a mutable log.
+- Each new history event MUST include `replay_ops`, a non-empty list of `{"op":"set","field":"top_level_field","value":...}` and optional `{"op":"delete","field":"top_level_field"}`, covering **every changed top-level root field except `history` and `recovery`**. Never change those excluded fields using replay operations; the event is appended automatically during replay.
+- Always include updates for `revision`, `last_updated`, and `updated_by` in `replay_ops`, plus each additionally modified top-level field.
+- Verify that `tools/stage11_recover.py ai_memory.json` reconstructs the entire proposed record using the embedded anchor and replay changes **before committing**. Treat a validation failure as a blocker.
+- A valid update must also pass the GitHub Actions replay check. If SHA conflict occurs, discard stale patch operations and build them again after fetching current state.
+
+This new requirement supplements, not replaces, the earlier append-only history and GitHub-SHA collision procedure. The anchor and event patches support **reconstruction from the current file after revision 14**, without retrieving intermediate Git snapshots. They cannot recover data when the whole current file is lost, and do not reconstruct all earlier historical intermediate records.
