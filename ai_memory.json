@@ -4,12 +4,12 @@
   "message": "This is an experimental external memory shared across AI conversations.",
   "status": "versioned_memory_initialized",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T02:35:30.896Z",
+  "last_updated": "2026-11-06T02:38:16.563Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 1,
-  "updated_by": "ChatGPT Stage 7 initializer",
+  "revision": 2,
+  "updated_by": "ChatGPT Stage 7 cross-instance test",
   "history": [
     {
       "revision": 1,
@@ -19,6 +19,16 @@
       "action": "initialize_versioned_memory",
       "summary": "Started structured version history while preserving Stage 5 and Stage 6 checkpoints.",
       "previous_blob_sha": "aea085fdeee6e1ff4aae88f2dd9a927f6bdd8afe"
+    },
+    {
+      "revision": 2,
+      "event_id": "stage7-e5d36c828228652f5ff6304609dc5784",
+      "timestamp": "2026-11-06T02:38:16.563Z",
+      "actor": "ChatGPT Stage 7 cross-instance test",
+      "action": "stage7_cross_instance_test",
+      "summary": "Independent ChatGPT instance generated a fresh unpredictable Stage 7 test nonce and advanced the shared-memory revision, preserving earlier checkpoints.",
+      "previous_blob_sha": "a6a566dd54a9f3682143314add3f4c0b820fb29d"
     }
-  ]
+  ],
+  "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A"
 }
