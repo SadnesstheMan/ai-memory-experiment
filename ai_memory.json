@@ -1,9 +1,10 @@
 {
   "identity": "Independent AI experiment",
-  "stage": 5,
+  "stage": 6,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "checkpoint_created",
+  "status": "updated_by_second_instance",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T02:24:17.281Z",
-  "experiment": "browser_only_cross_instance_retrieval"
+  "last_updated": "2026-11-06T02:31:13.122Z",
+  "experiment": "browser_only_cross_instance_retrieval",
+  "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk"
 }
