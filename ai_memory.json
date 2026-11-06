@@ -1,15 +1,15 @@
 {
   "identity": "Independent AI experiment",
-  "stage": 7,
+  "stage": 8,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "versioned_memory_initialized",
+  "status": "stage8_bootstrap_ready",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T02:38:16.563Z",
+  "last_updated": "2026-11-06T02:43:48.157Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 2,
-  "updated_by": "ChatGPT Stage 7 cross-instance test",
+  "revision": 3,
+  "updated_by": "ChatGPT Stage 8 bootstrap",
   "history": [
     {
       "revision": 1,
@@ -28,7 +28,23 @@
       "action": "stage7_cross_instance_test",
       "summary": "Independent ChatGPT instance generated a fresh unpredictable Stage 7 test nonce and advanced the shared-memory revision, preserving earlier checkpoints.",
       "previous_blob_sha": "a6a566dd54a9f3682143314add3f4c0b820fb29d"
+    },
+    {
+      "revision": 3,
+      "event_id": "stage8-bootstrap-20261106024348157",
+      "timestamp": "2026-11-06T02:43:48.157Z",
+      "actor": "ChatGPT Stage 8 bootstrap",
+      "action": "stage8_bootstrap_initialized",
+      "summary": "Configured custom-instruction startup guide, public live dashboard, and GitHub Actions memory validation.",
+      "previous_blob_sha": "4f8fdf48a9937323d4a919a3dc52233df0332914"
     }
   ],
-  "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A"
+  "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
+  "stage8": {
+    "startup_guide": "STAGE8_SETUP.md",
+    "dashboard": "stage8_dashboard.html",
+    "validation_workflow": ".github/workflows/verify-ai-memory.yml",
+    "sync_mode": "startup_instructions_plus_on_demand_version_safe_writes",
+    "limitations": "Model tool invocation is not automatic or guaranteed in every conversation."
+  }
 }
