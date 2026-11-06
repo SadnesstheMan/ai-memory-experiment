@@ -2,14 +2,14 @@
   "identity": "Independent AI experiment",
   "stage": 8,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage8_partially_verified",
+  "status": "stage8_complete",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T02:58:56.493Z",
+  "last_updated": "2026-11-06T03:03:55.818Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 6,
-  "updated_by": "ChatGPT Stage 8 dashboard verification",
+  "revision": 7,
+  "updated_by": "ChatGPT Stage 8 acceptance closer",
   "history": [
     {
       "revision": 1,
@@ -64,6 +64,15 @@
       "action": "stage8_dashboard_auto_refresh_verified",
       "summary": "Recorded user's confirmation that the live browser dashboard detected a GitHub memory change without manual refresh; no-GitHub fallback remains untested.",
       "previous_blob_sha": "fbfc558f58866cb9c48d6dfbbf82c883f2b6bc2f"
+    },
+    {
+      "revision": 7,
+      "event_id": "stage8-completion-20261106030355818",
+      "timestamp": "2026-11-06T03:03:55.818Z",
+      "actor": "ChatGPT Stage 8 acceptance closer",
+      "action": "stage8_acceptance_completed",
+      "summary": "Completed six Stage 8 acceptance checks, recording user-reported simulated no-GitHub fallback separately from verified GitHub-backed checks.",
+      "previous_blob_sha": "8f324ca0a45ca18d32014462531292d363cc2f40"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -74,16 +83,16 @@
     "sync_mode": "startup_instructions_plus_on_demand_version_safe_writes",
     "limitations": "Model tool invocation is not automatic or guaranteed in every conversation.",
     "verification": {
-      "overall": "partial",
+      "overall": "complete",
       "checks": {
         "cold_start_read": "passed",
         "cross_instance_write": "passed",
         "automatic_monitor": "passed",
         "integrity_workflow": "passed_revision_4",
-        "no_github_fallback": "not_verified"
+        "no_github_fallback": "passed_simulated_user_reported"
       },
-      "notes": "Fresh GitHub read, SHA-safe cross-instance write, historical checkpoint preservation, and GitHub Actions validation passed. User confirmed the live dashboard detected the updated revision without manual refresh. Missing-GitHub fallback remains unverified.",
-      "checked_at": "2026-11-06T02:58:56.493Z"
+      "notes": "All six planned Stage 8 checks reported passed. GitHub startup read, cross-instance write, revision preservation, live monitor, and Actions validation were confirmed in the experiment. No-GitHub fallback passed a simulated no-tools test per user's report; actual GitHub outage/disconnection was not tested.",
+      "checked_at": "2026-11-06T03:03:55.818Z"
     }
   }
 }
