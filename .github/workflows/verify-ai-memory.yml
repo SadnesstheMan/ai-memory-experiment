@@ -6,6 +6,7 @@ on:
       - .github/workflows/verify-ai-memory.yml
       - tools/stage11_recover.py
       - tools/stage12_backup.py
+      - tools/stage13_backup_audit.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -65,3 +66,7 @@ jobs:
         shell: bash
         run: |
           python tools/stage12_backup.py self-test --memory ai_memory.json
+      - name: Stage 13 backup freshness auditor
+        shell: bash
+        run: |
+          python tools/stage13_backup_audit.py --self-test --memory ai_memory.json
