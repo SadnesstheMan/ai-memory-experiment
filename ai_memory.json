@@ -4,12 +4,12 @@
   "message": "This is an experimental external memory shared across AI conversations.",
   "status": "stage9_controlled_test_passed",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:12:40.675Z",
+  "last_updated": "2026-11-06T03:16:48.411Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 11,
-  "updated_by": "Stage 9 independent writer A",
+  "revision": 12,
+  "updated_by": "Stage 9 independent writer B",
   "history": [
     {
       "revision": 1,
@@ -109,6 +109,15 @@
       "action": "stage9_cross_instance_writer_a_commit",
       "summary": "Independent writer A records its unique Stage 9 value from a shared base snapshot without altering prior checkpoint or history records.",
       "previous_blob_sha": "d0773cf0620213af74ac8b578384ee7557ef3dd0"
+    },
+    {
+      "revision": 12,
+      "event_id": "stage9-cross-instance-b-c86cb97af7da1165a825dd68",
+      "timestamp": "2026-11-06T03:16:48.411Z",
+      "actor": "Stage 9 independent writer B",
+      "action": "stage9_cross_instance_writer_b_conflict_recovered",
+      "summary": "GitHub returned HTTP 409 for writer B's original revision-10 blob SHA. Re-fetched revision 11, retained writer A, and rebased writer B with the new blob SHA. Earlier independent B preparation was not verified.",
+      "previous_blob_sha": "5e77756016a72de5839376d00853fc99d454aeb2"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -133,7 +142,7 @@
   },
   "stage9": {
     "guide": "STAGE9_CONCURRENCY_TEST.md",
-    "status": "awaiting_independent_instance_test",
+    "status": "cross_instance_recovery_pending_validation",
     "trials": {
       "controlled": {
         "writer_a": {
@@ -161,13 +170,24 @@
           "source_revision": 10,
           "source_blob_sha": "d0773cf0620213af74ac8b578384ee7557ef3dd0",
           "prepared_at": "2026-11-06T03:10:06.820Z"
+        },
+        "writer_b": {
+          "value": "S9_CROSS_B_IPtyuptIbtThw_3VosHYzUv1MLCVr-wA",
+          "source_revision": 10,
+          "stale_source_blob_sha": "d0773cf0620213af74ac8b578384ee7557ef3dd0",
+          "stale_write_rejected": true,
+          "github_status": 409,
+          "reconciled_from_revision": 11,
+          "reconciled_blob_sha": "5e77756016a72de5839376d00853fc99d454aeb2",
+          "committed": true,
+          "preparation_note": "Writer B proposal was reconstructed from the cached revision 10 snapshot in this conversation; prior independently prepared Writer B artifact was not available."
         }
       }
     },
     "checks": {
       "controlled_stale_sha_rejected": "passed",
       "controlled_rebase_preserved_both": "passed",
-      "real_cross_instance_conflict": "not_tested",
+      "real_cross_instance_conflict": "stale_sha_rejected_and_reconciled_preparation_independence_not_verified",
       "github_validation": "not_tested"
     }
   }
