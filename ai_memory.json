@@ -4,12 +4,12 @@
   "message": "This is an experimental external memory shared across AI conversations.",
   "status": "stage9_controlled_test_passed",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:06:23.536Z",
+  "last_updated": "2026-11-06T03:12:40.675Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 10,
-  "updated_by": "Stage 9 simulated writer B",
+  "revision": 11,
+  "updated_by": "Stage 9 independent writer A",
   "history": [
     {
       "revision": 1,
@@ -100,6 +100,15 @@
       "action": "stage9_controlled_stale_conflict_recovered",
       "summary": "GitHub rejected writer B's stale SHA with HTTP 409. Re-read writer A's committed revision, preserved writer A, and committed writer B with the current blob SHA. Controlled single-session simulation only.",
       "previous_blob_sha": "fffc091f26b838116a82a52b6185150aa9cac1f9"
+    },
+    {
+      "revision": 11,
+      "event_id": "stage9-cross-a-a570e3cbe0ee4b16bba63449",
+      "timestamp": "2026-11-06T03:12:40.675Z",
+      "actor": "Stage 9 independent writer A",
+      "action": "stage9_cross_instance_writer_a_commit",
+      "summary": "Independent writer A records its unique Stage 9 value from a shared base snapshot without altering prior checkpoint or history records.",
+      "previous_blob_sha": "d0773cf0620213af74ac8b578384ee7557ef3dd0"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -146,7 +155,14 @@
         },
         "result": "Both writer values preserved after a rejected stale-SHA write and a successful sequential rebase."
       },
-      "cross_instance": {}
+      "cross_instance": {
+        "writer_a": {
+          "value": "S9_CROSS_A_J2RUCxcjvRF92R7NeDpqfrarozo",
+          "source_revision": 10,
+          "source_blob_sha": "d0773cf0620213af74ac8b578384ee7557ef3dd0",
+          "prepared_at": "2026-11-06T03:10:06.820Z"
+        }
+      }
     },
     "checks": {
       "controlled_stale_sha_rejected": "passed",
