@@ -1,10 +1,24 @@
 {
   "identity": "Independent AI experiment",
-  "stage": 6,
+  "stage": 7,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "updated_by_second_instance",
+  "status": "versioned_memory_initialized",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T02:31:13.122Z",
+  "last_updated": "2026-11-06T02:35:30.896Z",
   "experiment": "browser_only_cross_instance_retrieval",
-  "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk"
+  "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
+  "schema_version": 1,
+  "revision": 1,
+  "updated_by": "ChatGPT Stage 7 initializer",
+  "history": [
+    {
+      "revision": 1,
+      "event_id": "stage7-bootstrap-0001",
+      "timestamp": "2026-11-06T02:35:30.896Z",
+      "actor": "ChatGPT Stage 7 initializer",
+      "action": "initialize_versioned_memory",
+      "summary": "Started structured version history while preserving Stage 5 and Stage 6 checkpoints.",
+      "previous_blob_sha": "aea085fdeee6e1ff4aae88f2dd9a927f6bdd8afe"
+    }
+  ]
 }
