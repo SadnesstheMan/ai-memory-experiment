@@ -1,15 +1,15 @@
 {
   "identity": "Independent AI experiment",
-  "stage": 10,
+  "stage": 11,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage10_complete",
+  "status": "stage11_replay_initialized",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:31:29.860Z",
+  "last_updated": "2026-11-06T03:37:05.667Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 14,
-  "updated_by": "ChatGPT Stage 10 results recorder",
+  "revision": 15,
+  "updated_by": "ChatGPT Stage 11 initializer",
   "history": [
     {
       "revision": 1,
@@ -136,6 +136,59 @@
       "action": "stage10_results_recorded",
       "summary": "Recorded user-reported Stage 10A retrieval plus directly observed 9/9 Stage 10B isolated corruption tests and 6/6 Stage 10C Git-snapshot-assisted replay steps, preserving canonical data and previous history; optional 10D not performed.",
       "previous_blob_sha": "3e5ac160f4c4b714f3234ae44f1bf88412daa583"
+    },
+    {
+      "revision": 15,
+      "event_id": "stage11-bootstrap-20261106033705667",
+      "timestamp": "2026-11-06T03:37:05.667Z",
+      "actor": "ChatGPT Stage 11 initializer",
+      "action": "stage11_replay_anchor_initialized",
+      "summary": "Embedded immutable revision-14 recovery anchor and introduced machine-readable replay operations; preserved all earlier checkpoints and history.",
+      "previous_blob_sha": "1c8cfde3944e5757543f40b72ba628cbe5ddf7bf",
+      "replay_ops": [
+        {
+          "op": "set",
+          "field": "stage",
+          "value": 11
+        },
+        {
+          "op": "set",
+          "field": "status",
+          "value": "stage11_replay_initialized"
+        },
+        {
+          "op": "set",
+          "field": "revision",
+          "value": 15
+        },
+        {
+          "op": "set",
+          "field": "last_updated",
+          "value": "2026-11-06T03:37:05.667Z"
+        },
+        {
+          "op": "set",
+          "field": "updated_by",
+          "value": "ChatGPT Stage 11 initializer"
+        },
+        {
+          "op": "set",
+          "field": "stage11",
+          "value": {
+            "status": "replay_bootstrap_committed",
+            "guide": "STAGE11_RECOVERY_PROTOCOL.md",
+            "validator": "tools/stage11_recover.py",
+            "anchor_revision": 14,
+            "checks": {
+              "anchor_integrity": "not_verified",
+              "replay_equivalence": "not_verified",
+              "corruption_detection": "not_tested",
+              "continuation_replay": "not_tested",
+              "github_actions": "not_verified"
+            }
+          }
+        }
+      ]
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -288,6 +341,317 @@
         }
       },
       "conclusion": "Completed Stage 10 read-only recovery, isolated corruption detection, and Git-snapshot-assisted reconstruction. Does not establish event-log-only full recovery."
+    }
+  },
+  "recovery": {
+    "format": "anchored_top_level_patch_v1",
+    "anchor_revision": 14,
+    "anchor_blob_sha": "1c8cfde3944e5757543f40b72ba628cbe5ddf7bf",
+    "anchor_snapshot": {
+      "identity": "Independent AI experiment",
+      "stage": 10,
+      "message": "This is an experimental external memory shared across AI conversations.",
+      "status": "stage10_complete",
+      "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
+      "last_updated": "2026-11-06T03:31:29.860Z",
+      "experiment": "browser_only_cross_instance_retrieval",
+      "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
+      "schema_version": 1,
+      "revision": 14,
+      "updated_by": "ChatGPT Stage 10 results recorder",
+      "history": [
+        {
+          "revision": 1,
+          "event_id": "stage7-bootstrap-0001",
+          "timestamp": "2026-11-06T02:35:30.896Z",
+          "actor": "ChatGPT Stage 7 initializer",
+          "action": "initialize_versioned_memory",
+          "summary": "Started structured version history while preserving Stage 5 and Stage 6 checkpoints.",
+          "previous_blob_sha": "aea085fdeee6e1ff4aae88f2dd9a927f6bdd8afe"
+        },
+        {
+          "revision": 2,
+          "event_id": "stage7-e5d36c828228652f5ff6304609dc5784",
+          "timestamp": "2026-11-06T02:38:16.563Z",
+          "actor": "ChatGPT Stage 7 cross-instance test",
+          "action": "stage7_cross_instance_test",
+          "summary": "Independent ChatGPT instance generated a fresh unpredictable Stage 7 test nonce and advanced the shared-memory revision, preserving earlier checkpoints.",
+          "previous_blob_sha": "a6a566dd54a9f3682143314add3f4c0b820fb29d"
+        },
+        {
+          "revision": 3,
+          "event_id": "stage8-bootstrap-20261106024348157",
+          "timestamp": "2026-11-06T02:43:48.157Z",
+          "actor": "ChatGPT Stage 8 bootstrap",
+          "action": "stage8_bootstrap_initialized",
+          "summary": "Configured custom-instruction startup guide, public live dashboard, and GitHub Actions memory validation.",
+          "previous_blob_sha": "4f8fdf48a9937323d4a919a3dc52233df0332914"
+        },
+        {
+          "revision": 4,
+          "event_id": "stage8-verification-20261106025233112",
+          "timestamp": "2026-11-06T02:52:33.112Z",
+          "actor": "ChatGPT Stage 8 verification",
+          "action": "stage8_verification_test",
+          "summary": "Verified fresh GitHub retrieval; initiated SHA-safe cross-instance write test; retained pending dashboard, new Actions run, and fallback checks.",
+          "previous_blob_sha": "eda550811dfb85c4244a48c96a7587f5e52e8157"
+        },
+        {
+          "revision": 5,
+          "event_id": "stage8-results-20261106025319207",
+          "timestamp": "2026-11-06T02:53:19.207Z",
+          "actor": "ChatGPT Stage 8 verification",
+          "action": "stage8_verification_results",
+          "summary": "Confirmed Stage 8 cross-instance SHA-safe write and successful GitHub Actions validation of revision 4; live browser monitor and no-access fallback remain unverified.",
+          "previous_blob_sha": "07efd603bfbd656cdc182251350cf43b097c2300"
+        },
+        {
+          "revision": 6,
+          "event_id": "stage8-dashboard-confirmed-20261106025856493",
+          "timestamp": "2026-11-06T02:58:56.493Z",
+          "actor": "ChatGPT Stage 8 dashboard verification",
+          "action": "stage8_dashboard_auto_refresh_verified",
+          "summary": "Recorded user's confirmation that the live browser dashboard detected a GitHub memory change without manual refresh; no-GitHub fallback remains untested.",
+          "previous_blob_sha": "fbfc558f58866cb9c48d6dfbbf82c883f2b6bc2f"
+        },
+        {
+          "revision": 7,
+          "event_id": "stage8-completion-20261106030355818",
+          "timestamp": "2026-11-06T03:03:55.818Z",
+          "actor": "ChatGPT Stage 8 acceptance closer",
+          "action": "stage8_acceptance_completed",
+          "summary": "Completed six Stage 8 acceptance checks, recording user-reported simulated no-GitHub fallback separately from verified GitHub-backed checks.",
+          "previous_blob_sha": "8f324ca0a45ca18d32014462531292d363cc2f40"
+        },
+        {
+          "revision": 8,
+          "event_id": "stage9-initialized-20261106030513948",
+          "timestamp": "2026-11-06T03:05:13.948Z",
+          "actor": "ChatGPT Stage 9 initializer",
+          "action": "stage9_conflict_testing_initialized",
+          "summary": "Started Stage 9 optimistic-concurrency and stale-SHA recovery tests; retained Stage 8 acceptance and all previous memory checkpoints.",
+          "previous_blob_sha": "4c9a510695e9e9d081c726cd337e24be0edb541c"
+        },
+        {
+          "revision": 9,
+          "event_id": "stage9-sim-a-20261106030542708",
+          "timestamp": "2026-11-06T03:05:42.708Z",
+          "actor": "Stage 9 simulated writer A",
+          "action": "stage9_controlled_writer_a_commit",
+          "summary": "Simulated writer A committed its unique value from the Stage 9 starting snapshot; writer B is expected to try an obsolete SHA next.",
+          "previous_blob_sha": "0d3f4800fdcb75ccabc31466dfe54719a7feb403"
+        },
+        {
+          "revision": 10,
+          "event_id": "stage9-sim-b-rebase-20261106030623536",
+          "timestamp": "2026-11-06T03:06:23.536Z",
+          "actor": "Stage 9 simulated writer B",
+          "action": "stage9_controlled_stale_conflict_recovered",
+          "summary": "GitHub rejected writer B's stale SHA with HTTP 409. Re-read writer A's committed revision, preserved writer A, and committed writer B with the current blob SHA. Controlled single-session simulation only.",
+          "previous_blob_sha": "fffc091f26b838116a82a52b6185150aa9cac1f9"
+        },
+        {
+          "revision": 11,
+          "event_id": "stage9-cross-a-a570e3cbe0ee4b16bba63449",
+          "timestamp": "2026-11-06T03:12:40.675Z",
+          "actor": "Stage 9 independent writer A",
+          "action": "stage9_cross_instance_writer_a_commit",
+          "summary": "Independent writer A records its unique Stage 9 value from a shared base snapshot without altering prior checkpoint or history records.",
+          "previous_blob_sha": "d0773cf0620213af74ac8b578384ee7557ef3dd0"
+        },
+        {
+          "revision": 12,
+          "event_id": "stage9-cross-instance-b-c86cb97af7da1165a825dd68",
+          "timestamp": "2026-11-06T03:16:48.411Z",
+          "actor": "Stage 9 independent writer B",
+          "action": "stage9_cross_instance_writer_b_conflict_recovered",
+          "summary": "GitHub returned HTTP 409 for writer B's original revision-10 blob SHA. Re-fetched revision 11, retained writer A, and rebased writer B with the new blob SHA. Earlier independent B preparation was not verified.",
+          "previous_blob_sha": "5e77756016a72de5839376d00853fc99d454aeb2"
+        },
+        {
+          "revision": 13,
+          "event_id": "stage9-closure-stage10-prep-20261106032319106",
+          "timestamp": "2026-11-06T03:23:19.106Z",
+          "actor": "ChatGPT Stage 9 closure and Stage 10 preparation",
+          "action": "stage9_completed_stage10_prepared",
+          "summary": "Recorded user's correction: writer B's independently prepared proposal was mislabeled Writer A; preserved the original audit note, confirmed both values and Stage 9 validation, closed Stage 9, and prepared Stage 10 safe recovery tests.",
+          "previous_blob_sha": "ccc43c063e86191518aff53a20217b0a4108ca48"
+        },
+        {
+          "revision": 14,
+          "event_id": "stage10-results-20261106033129860",
+          "timestamp": "2026-11-06T03:31:29.860Z",
+          "actor": "ChatGPT Stage 10 results recorder",
+          "action": "stage10_results_recorded",
+          "summary": "Recorded user-reported Stage 10A retrieval plus directly observed 9/9 Stage 10B isolated corruption tests and 6/6 Stage 10C Git-snapshot-assisted replay steps, preserving canonical data and previous history; optional 10D not performed.",
+          "previous_blob_sha": "3e5ac160f4c4b714f3234ae44f1bf88412daa583"
+        }
+      ],
+      "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
+      "stage8": {
+        "startup_guide": "STAGE8_SETUP.md",
+        "dashboard": "stage8_dashboard.html",
+        "validation_workflow": ".github/workflows/verify-ai-memory.yml",
+        "sync_mode": "startup_instructions_plus_on_demand_version_safe_writes",
+        "limitations": "Model tool invocation is not automatic or guaranteed in every conversation.",
+        "verification": {
+          "overall": "complete",
+          "checks": {
+            "cold_start_read": "passed",
+            "cross_instance_write": "passed",
+            "automatic_monitor": "passed",
+            "integrity_workflow": "passed_revision_4",
+            "no_github_fallback": "passed_simulated_user_reported"
+          },
+          "notes": "All six planned Stage 8 checks reported passed. GitHub startup read, cross-instance write, revision preservation, live monitor, and Actions validation were confirmed in the experiment. No-GitHub fallback passed a simulated no-tools test per user's report; actual GitHub outage/disconnection was not tested.",
+          "checked_at": "2026-11-06T03:03:55.818Z"
+        }
+      },
+      "stage9": {
+        "guide": "STAGE9_CONCURRENCY_TEST.md",
+        "status": "completed",
+        "trials": {
+          "controlled": {
+            "writer_a": {
+              "value": "S9_A_20261106030542708",
+              "source_revision": 8,
+              "source_blob_sha": "0d3f4800fdcb75ccabc31466dfe54719a7feb403",
+              "committed": true
+            },
+            "test_kind": "sequential_stale_sha_simulation",
+            "writer_b": {
+              "value": "S9_B_20261106030601405",
+              "source_revision": 8,
+              "stale_source_blob_sha": "0d3f4800fdcb75ccabc31466dfe54719a7feb403",
+              "stale_write_rejected": true,
+              "github_status": 409,
+              "reconciled_from_revision": 9,
+              "reconciled_blob_sha": "fffc091f26b838116a82a52b6185150aa9cac1f9",
+              "committed": true
+            },
+            "result": "Both writer values preserved after a rejected stale-SHA write and a successful sequential rebase."
+          },
+          "cross_instance": {
+            "writer_a": {
+              "value": "S9_CROSS_A_J2RUCxcjvRF92R7NeDpqfrarozo",
+              "source_revision": 10,
+              "source_blob_sha": "d0773cf0620213af74ac8b578384ee7557ef3dd0",
+              "prepared_at": "2026-11-06T03:10:06.820Z"
+            },
+            "writer_b": {
+              "value": "S9_CROSS_B_IPtyuptIbtThw_3VosHYzUv1MLCVr-wA",
+              "source_revision": 10,
+              "stale_source_blob_sha": "d0773cf0620213af74ac8b578384ee7557ef3dd0",
+              "stale_write_rejected": true,
+              "github_status": 409,
+              "reconciled_from_revision": 11,
+              "reconciled_blob_sha": "5e77756016a72de5839376d00853fc99d454aeb2",
+              "committed": true,
+              "preparation_note": "Writer B proposal was reconstructed from the cached revision 10 snapshot in this conversation; prior independently prepared Writer B artifact was not available.",
+              "preparation_note_correction": "User clarified that writer B's proposal was independently preserved; writer B had accidentally labeled its proposal as Writer A, and the label was not corrected before the test. This correction supersedes the earlier independence caveat; the original note is retained for audit."
+            }
+          }
+        },
+        "checks": {
+          "controlled_stale_sha_rejected": "passed",
+          "controlled_rebase_preserved_both": "passed",
+          "real_cross_instance_conflict": "passed_with_user_confirmed_independent_preparation",
+          "github_validation": "passed_revision_12"
+        },
+        "audit_correction": {
+          "reported_by": "user",
+          "issue": "writer_b_proposal_mislabeled_as_writer_a",
+          "explanation": "Writer B's independently preserved proposal was mistakenly labeled Writer A before the test; no rename occurred before execution.",
+          "supersedes": "writer_b.preparation_note and revision 12's statement that independent B preparation was unverified",
+          "evidence": "User-confirmed independent preparation; GitHub commits independently verify values and conflict recovery but cannot prove the pre-commit preparation artifacts.",
+          "recorded_at": "2026-11-06T03:23:19.106Z"
+        },
+        "completion": {
+          "completed_at": "2026-11-06T03:23:19.106Z",
+          "final_test_revision": 12,
+          "writer_a_commit": "45140890e07f9c5fb92789a2a77e1c20910cdd1a",
+          "writer_b_commit": "46a20f869ad66a1d05d54ffb04d6de7e06200ad5",
+          "validation_run": "https://github.com/SadnesstheMan/ai-memory-experiment/actions/runs/42155569774",
+          "result": "completed",
+          "qualification": "Independent proposals confirmed by user; GitHub verified preservation and final validation. HTTP 409 described in stored writer log; not visible in Git commit diff."
+        }
+      },
+      "stage10": {
+        "status": "completed",
+        "guide": "STAGE10_RECOVERY_TEST.md",
+        "objective": "Safe snapshot recovery and isolated data-corruption detection without modifying canonical memory",
+        "checks": {
+          "read_only_snapshot_recovery": "passed_reported_external_instance",
+          "isolated_corruption_detection": "passed_observed_9_of_9",
+          "fixture_replay_preserves_history": "passed_observed_git_snapshot_assisted_6_of_6",
+          "canonical_data_safety": "passed_observed_no_change_during_tests"
+        },
+        "results": {
+          "recorded_at": "2026-11-06T03:31:29.860Z",
+          "evidence": {
+            "test_10a": {
+              "status": "passed",
+              "source": "user_supplied_result_from_other_instance",
+              "note": "Other instance reported direct read-only retrieval of historical Git snapshots, preserved checkpoints and sequential event history; not independently re-executed as 10A here."
+            },
+            "test_10b": {
+              "status": "passed",
+              "source": "directly_observed_isolated_fixture_tests",
+              "total_fixtures": 9,
+              "passed": 9,
+              "failures_detected": [
+                "malformed_json",
+                "missing_stage5_checkpoint",
+                "revision_history_mismatch",
+                "duplicate_event_id",
+                "invalid_previous_blob_sha",
+                "invalid_timestamp",
+                "missing_stage7_nonce",
+                "altered_historical_event_id"
+              ],
+              "baseline_valid": true
+            },
+            "test_10c": {
+              "status": "passed",
+              "source": "directly_observed_historical_snapshot_diff_replay",
+              "start_revision": 7,
+              "end_revision": 13,
+              "steps_replayed": 6,
+              "all_steps_matched": true,
+              "history_entries_preserved": 13,
+              "checkpoint_preservation": true,
+              "completed_stage8_and_stage9_preserved": true,
+              "base_commit": "5d509e0646ff938fd45ebf18758c6dcc21207778",
+              "end_commit": "796f56f1bbc09aba9461f0d3f4e2567d5e4c9f3b",
+              "limit": "Reconstruction used consecutive Git snapshots and field-level diffs; event summaries alone are insufficient for deterministic reconstruction."
+            },
+            "test_10d": {
+              "status": "not_run_optional",
+              "reason": "No canonical corruption occurred; destructive restoration was unnecessary and not authorized."
+            },
+            "canonical_integrity": {
+              "status": "passed_before_results_commit",
+              "source": "direct_git_read",
+              "unchanged_blob_sha": "3e5ac160f4c4b714f3234ae44f1bf88412daa583",
+              "baseline_revision": 13
+            }
+          },
+          "conclusion": "Completed Stage 10 read-only recovery, isolated corruption detection, and Git-snapshot-assisted reconstruction. Does not establish event-log-only full recovery."
+        }
+      }
+    }
+  },
+  "stage11": {
+    "status": "replay_bootstrap_committed",
+    "guide": "STAGE11_RECOVERY_PROTOCOL.md",
+    "validator": "tools/stage11_recover.py",
+    "anchor_revision": 14,
+    "checks": {
+      "anchor_integrity": "not_verified",
+      "replay_equivalence": "not_verified",
+      "corruption_detection": "not_tested",
+      "continuation_replay": "not_tested",
+      "github_actions": "not_verified"
     }
   }
 }
