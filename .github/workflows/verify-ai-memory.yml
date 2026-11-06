@@ -5,6 +5,7 @@ on:
       - ai_memory.json
       - .github/workflows/verify-ai-memory.yml
       - tools/stage11_recover.py
+      - tools/stage12_backup.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -60,3 +61,7 @@ jobs:
           else:
               print("Stage 11 not yet initialized; historical format valid")
           PY
+      - name: Stage 12 isolated backup and recovery simulation
+        shell: bash
+        run: |
+          python tools/stage12_backup.py self-test --memory ai_memory.json
