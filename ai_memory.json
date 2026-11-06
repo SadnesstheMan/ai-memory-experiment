@@ -2,14 +2,14 @@
   "identity": "Independent AI experiment",
   "stage": 10,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage10_prepared",
+  "status": "stage10_complete",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:23:19.106Z",
+  "last_updated": "2026-11-06T03:31:29.860Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 13,
-  "updated_by": "ChatGPT Stage 9 closure and Stage 10 preparation",
+  "revision": 14,
+  "updated_by": "ChatGPT Stage 10 results recorder",
   "history": [
     {
       "revision": 1,
@@ -127,6 +127,15 @@
       "action": "stage9_completed_stage10_prepared",
       "summary": "Recorded user's correction: writer B's independently prepared proposal was mislabeled Writer A; preserved the original audit note, confirmed both values and Stage 9 validation, closed Stage 9, and prepared Stage 10 safe recovery tests.",
       "previous_blob_sha": "ccc43c063e86191518aff53a20217b0a4108ca48"
+    },
+    {
+      "revision": 14,
+      "event_id": "stage10-results-20261106033129860",
+      "timestamp": "2026-11-06T03:31:29.860Z",
+      "actor": "ChatGPT Stage 10 results recorder",
+      "action": "stage10_results_recorded",
+      "summary": "Recorded user-reported Stage 10A retrieval plus directly observed 9/9 Stage 10B isolated corruption tests and 6/6 Stage 10C Git-snapshot-assisted replay steps, preserving canonical data and previous history; optional 10D not performed.",
+      "previous_blob_sha": "3e5ac160f4c4b714f3234ae44f1bf88412daa583"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -219,14 +228,66 @@
     }
   },
   "stage10": {
-    "status": "prepared_not_tested",
+    "status": "completed",
     "guide": "STAGE10_RECOVERY_TEST.md",
     "objective": "Safe snapshot recovery and isolated data-corruption detection without modifying canonical memory",
     "checks": {
-      "read_only_snapshot_recovery": "not_tested",
-      "isolated_corruption_detection": "not_tested",
-      "fixture_replay_preserves_history": "not_tested",
-      "canonical_data_safety": "not_tested"
+      "read_only_snapshot_recovery": "passed_reported_external_instance",
+      "isolated_corruption_detection": "passed_observed_9_of_9",
+      "fixture_replay_preserves_history": "passed_observed_git_snapshot_assisted_6_of_6",
+      "canonical_data_safety": "passed_observed_no_change_during_tests"
+    },
+    "results": {
+      "recorded_at": "2026-11-06T03:31:29.860Z",
+      "evidence": {
+        "test_10a": {
+          "status": "passed",
+          "source": "user_supplied_result_from_other_instance",
+          "note": "Other instance reported direct read-only retrieval of historical Git snapshots, preserved checkpoints and sequential event history; not independently re-executed as 10A here."
+        },
+        "test_10b": {
+          "status": "passed",
+          "source": "directly_observed_isolated_fixture_tests",
+          "total_fixtures": 9,
+          "passed": 9,
+          "failures_detected": [
+            "malformed_json",
+            "missing_stage5_checkpoint",
+            "revision_history_mismatch",
+            "duplicate_event_id",
+            "invalid_previous_blob_sha",
+            "invalid_timestamp",
+            "missing_stage7_nonce",
+            "altered_historical_event_id"
+          ],
+          "baseline_valid": true
+        },
+        "test_10c": {
+          "status": "passed",
+          "source": "directly_observed_historical_snapshot_diff_replay",
+          "start_revision": 7,
+          "end_revision": 13,
+          "steps_replayed": 6,
+          "all_steps_matched": true,
+          "history_entries_preserved": 13,
+          "checkpoint_preservation": true,
+          "completed_stage8_and_stage9_preserved": true,
+          "base_commit": "5d509e0646ff938fd45ebf18758c6dcc21207778",
+          "end_commit": "796f56f1bbc09aba9461f0d3f4e2567d5e4c9f3b",
+          "limit": "Reconstruction used consecutive Git snapshots and field-level diffs; event summaries alone are insufficient for deterministic reconstruction."
+        },
+        "test_10d": {
+          "status": "not_run_optional",
+          "reason": "No canonical corruption occurred; destructive restoration was unnecessary and not authorized."
+        },
+        "canonical_integrity": {
+          "status": "passed_before_results_commit",
+          "source": "direct_git_read",
+          "unchanged_blob_sha": "3e5ac160f4c4b714f3234ae44f1bf88412daa583",
+          "baseline_revision": 13
+        }
+      },
+      "conclusion": "Completed Stage 10 read-only recovery, isolated corruption detection, and Git-snapshot-assisted reconstruction. Does not establish event-log-only full recovery."
     }
   }
 }
