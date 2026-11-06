@@ -4,11 +4,11 @@
   "message": "This is an experimental external memory shared across AI conversations.",
   "status": "stage8_partially_verified",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T02:52:33.112Z",
+  "last_updated": "2026-11-06T02:53:19.207Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 4,
+  "revision": 5,
   "updated_by": "ChatGPT Stage 8 verification",
   "history": [
     {
@@ -46,6 +46,15 @@
       "action": "stage8_verification_test",
       "summary": "Verified fresh GitHub retrieval; initiated SHA-safe cross-instance write test; retained pending dashboard, new Actions run, and fallback checks.",
       "previous_blob_sha": "eda550811dfb85c4244a48c96a7587f5e52e8157"
+    },
+    {
+      "revision": 5,
+      "event_id": "stage8-results-20261106025319207",
+      "timestamp": "2026-11-06T02:53:19.207Z",
+      "actor": "ChatGPT Stage 8 verification",
+      "action": "stage8_verification_results",
+      "summary": "Confirmed Stage 8 cross-instance SHA-safe write and successful GitHub Actions validation of revision 4; live browser monitor and no-access fallback remain unverified.",
+      "previous_blob_sha": "07efd603bfbd656cdc182251350cf43b097c2300"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -59,13 +68,13 @@
       "overall": "partial",
       "checks": {
         "cold_start_read": "passed",
-        "cross_instance_write": "pending",
+        "cross_instance_write": "passed",
         "automatic_monitor": "not_verified",
-        "integrity_workflow": "pending_new_run",
+        "integrity_workflow": "passed_revision_4",
         "no_github_fallback": "not_verified"
       },
-      "notes": "Fresh GitHub file retrieval verified in this conversation. Existing Actions validation runs passed before this write. Dashboard auto-refresh and no-GitHub fallback have not been observed.",
-      "checked_at": "2026-11-06T02:52:33.112Z"
+      "notes": "Fresh GitHub retrieval and SHA-safe update to revision 4 were independently verified. GitHub Actions validation for revision 4 completed successfully (run 42153082813). Browser auto-refresh and no-GitHub fallback remain untested. This revision 5 records the results.",
+      "checked_at": "2026-11-06T02:53:19.207Z"
     }
   }
 }
