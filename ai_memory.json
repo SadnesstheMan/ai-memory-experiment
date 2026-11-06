@@ -1,15 +1,15 @@
 {
   "identity": "Independent AI experiment",
-  "stage": 8,
+  "stage": 9,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage8_complete",
+  "status": "stage9_conflict_test_ready",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:03:55.818Z",
+  "last_updated": "2026-11-06T03:05:13.948Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 7,
-  "updated_by": "ChatGPT Stage 8 acceptance closer",
+  "revision": 8,
+  "updated_by": "ChatGPT Stage 9 initializer",
   "history": [
     {
       "revision": 1,
@@ -73,6 +73,15 @@
       "action": "stage8_acceptance_completed",
       "summary": "Completed six Stage 8 acceptance checks, recording user-reported simulated no-GitHub fallback separately from verified GitHub-backed checks.",
       "previous_blob_sha": "8f324ca0a45ca18d32014462531292d363cc2f40"
+    },
+    {
+      "revision": 8,
+      "event_id": "stage9-initialized-20261106030513948",
+      "timestamp": "2026-11-06T03:05:13.948Z",
+      "actor": "ChatGPT Stage 9 initializer",
+      "action": "stage9_conflict_testing_initialized",
+      "summary": "Started Stage 9 optimistic-concurrency and stale-SHA recovery tests; retained Stage 8 acceptance and all previous memory checkpoints.",
+      "previous_blob_sha": "4c9a510695e9e9d081c726cd337e24be0edb541c"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -93,6 +102,20 @@
       },
       "notes": "All six planned Stage 8 checks reported passed. GitHub startup read, cross-instance write, revision preservation, live monitor, and Actions validation were confirmed in the experiment. No-GitHub fallback passed a simulated no-tools test per user's report; actual GitHub outage/disconnection was not tested.",
       "checked_at": "2026-11-06T03:03:55.818Z"
+    }
+  },
+  "stage9": {
+    "guide": "STAGE9_CONCURRENCY_TEST.md",
+    "status": "controlled_collision_not_tested",
+    "trials": {
+      "controlled": {},
+      "cross_instance": {}
+    },
+    "checks": {
+      "controlled_stale_sha_rejected": "not_tested",
+      "controlled_rebase_preserved_both": "not_tested",
+      "real_cross_instance_conflict": "not_tested",
+      "github_validation": "not_tested"
     }
   }
 }
