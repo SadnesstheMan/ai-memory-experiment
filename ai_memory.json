@@ -2,14 +2,14 @@
   "identity": "Independent AI experiment",
   "stage": 9,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage9_controlled_collision_in_progress",
+  "status": "stage9_controlled_test_passed",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:05:42.708Z",
+  "last_updated": "2026-11-06T03:06:23.536Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 9,
-  "updated_by": "Stage 9 simulated writer A",
+  "revision": 10,
+  "updated_by": "Stage 9 simulated writer B",
   "history": [
     {
       "revision": 1,
@@ -91,6 +91,15 @@
       "action": "stage9_controlled_writer_a_commit",
       "summary": "Simulated writer A committed its unique value from the Stage 9 starting snapshot; writer B is expected to try an obsolete SHA next.",
       "previous_blob_sha": "0d3f4800fdcb75ccabc31466dfe54719a7feb403"
+    },
+    {
+      "revision": 10,
+      "event_id": "stage9-sim-b-rebase-20261106030623536",
+      "timestamp": "2026-11-06T03:06:23.536Z",
+      "actor": "Stage 9 simulated writer B",
+      "action": "stage9_controlled_stale_conflict_recovered",
+      "summary": "GitHub rejected writer B's stale SHA with HTTP 409. Re-read writer A's committed revision, preserved writer A, and committed writer B with the current blob SHA. Controlled single-session simulation only.",
+      "previous_blob_sha": "fffc091f26b838116a82a52b6185150aa9cac1f9"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -115,7 +124,7 @@
   },
   "stage9": {
     "guide": "STAGE9_CONCURRENCY_TEST.md",
-    "status": "controlled_first_writer_committed",
+    "status": "awaiting_independent_instance_test",
     "trials": {
       "controlled": {
         "writer_a": {
@@ -124,13 +133,24 @@
           "source_blob_sha": "0d3f4800fdcb75ccabc31466dfe54719a7feb403",
           "committed": true
         },
-        "test_kind": "sequential_stale_sha_simulation"
+        "test_kind": "sequential_stale_sha_simulation",
+        "writer_b": {
+          "value": "S9_B_20261106030601405",
+          "source_revision": 8,
+          "stale_source_blob_sha": "0d3f4800fdcb75ccabc31466dfe54719a7feb403",
+          "stale_write_rejected": true,
+          "github_status": 409,
+          "reconciled_from_revision": 9,
+          "reconciled_blob_sha": "fffc091f26b838116a82a52b6185150aa9cac1f9",
+          "committed": true
+        },
+        "result": "Both writer values preserved after a rejected stale-SHA write and a successful sequential rebase."
       },
       "cross_instance": {}
     },
     "checks": {
-      "controlled_stale_sha_rejected": "not_tested",
-      "controlled_rebase_preserved_both": "not_tested",
+      "controlled_stale_sha_rejected": "passed",
+      "controlled_rebase_preserved_both": "passed",
       "real_cross_instance_conflict": "not_tested",
       "github_validation": "not_tested"
     }
