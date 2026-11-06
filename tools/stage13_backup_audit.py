@@ -22,6 +22,15 @@ def utc_timestamp(value):
     return parsed.astimezone(timezone.utc)
 
 
+def revision_lag_issue(backup_revision, current_revision, max_revision_lag):
+    gap = current_revision - backup_revision
+    if gap > max_revision_lag:
+        return "backup lags source by {} revisions".format(gap)
+    if gap < 0:
+        return "backup revision exceeds supplied source revision"
+    return None
+
+
 def audit(archive, current=None, max_age_hours=168, max_revision_lag=0,
           now=None):
     if max_age_hours < 0 or max_revision_lag < 0:
@@ -44,11 +53,10 @@ def audit(archive, current=None, max_age_hours=168, max_revision_lag=0,
         record = json.loads(Path(current).read_text(encoding="utf-8"))
         reconstruct(record)
         current_revision = record["revision"]
-        gap = current_revision - backup_revision
-        if gap > max_revision_lag:
-            problems.append("backup lags source by {} revisions".format(gap))
-        if gap < 0:
-            problems.append("backup revision exceeds supplied source revision")
+        revision_warning = revision_lag_issue(backup_revision, current_revision,
+                                              max_revision_lag)
+        if revision_warning:
+            problems.append(revision_warning)
     return {
         "passed": not problems,
         "backup_revision": backup_revision,
@@ -80,15 +88,13 @@ def self_test(memory, verifier, tool):
                          now=created_at + timedelta(days=4))
         if age_test["passed"] or not any("too old" in x for x in age_test["issues"]):
             raise AssertionError("Stale timestamp went undetected")
-        old_rev_test = audit(archived, current=memory, max_revision_lag=0)
-        # Emulate the fresh source's revision advancing without modifying its file.
-        if old_rev_test["backup_revision"] + 1 <= old_rev_test["backup_revision"]:
-            raise AssertionError("Test setup failed")
-        revision_gap = (live["revision"] + 1) - report["backup_revision"]
-        if revision_gap != 1:
-            raise AssertionError("Unexpected revision lag test")
-        print("STAGE 13 SELF-TEST PASS: valid backup and stale time detected")
-        print("REVISION LAG TEST: next source revision would flag lag", revision_gap)
+        # Exercise the same pure revision-lag rule against a synthetic newer
+        # revision; don't mutate or spoof the validated canonical JSON file.
+        lag_warning = revision_lag_issue(report["backup_revision"],
+                                         live["revision"] + 1, 0)
+        if lag_warning != "backup lags source by 1 revisions":
+            raise AssertionError("Stale revision went undetected")
+        print("STAGE 13 SELF-TEST PASS: valid backup, stale time and revision lag")
         return 0
 
 
