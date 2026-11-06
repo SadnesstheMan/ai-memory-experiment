@@ -1,15 +1,15 @@
 {
   "identity": "Independent AI experiment",
-  "stage": 12,
+  "stage": 13,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage12_prepared",
+  "status": "stage13_prepared",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:46:08.461Z",
+  "last_updated": "2026-11-06T04:04:58.991Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 18,
-  "updated_by": "ChatGPT Stage 12 backup initializer",
+  "revision": 19,
+  "updated_by": "ChatGPT Stage 12 closure and Stage 13 initializer",
   "history": [
     {
       "revision": 1,
@@ -356,6 +356,117 @@
             },
             "limitations": "Backups are produced on demand, not automatically synchronized. No external independently accessible backup store has been connected or verified. In-archive checksums are not a cryptographic authenticity signature.",
             "configured_at": "2026-11-06T03:46:08.461Z"
+          }
+        }
+      ]
+    },
+    {
+      "revision": 19,
+      "event_id": "stage12-close-stage13-init-20261106040458991",
+      "timestamp": "2026-11-06T04:04:58.991Z",
+      "actor": "ChatGPT Stage 12 closure and Stage 13 initializer",
+      "action": "stage12_closed_with_limitations_stage13_initialized",
+      "summary": "Closed Stage 12 on user request after user-reported offline recovery from a separate same-computer folder; explicitly left independent-device and offsite protection unverified. Initialized Stage 13 backup freshness and rotation audit.",
+      "previous_blob_sha": "6d1abf0a6e8ed01c11e54fd110d6239c7bedc940",
+      "replay_ops": [
+        {
+          "op": "set",
+          "field": "stage",
+          "value": 13
+        },
+        {
+          "op": "set",
+          "field": "revision",
+          "value": 19
+        },
+        {
+          "op": "set",
+          "field": "status",
+          "value": "stage13_prepared"
+        },
+        {
+          "op": "set",
+          "field": "last_updated",
+          "value": "2026-11-06T04:04:58.991Z"
+        },
+        {
+          "op": "set",
+          "field": "updated_by",
+          "value": "ChatGPT Stage 12 closure and Stage 13 initializer"
+        },
+        {
+          "op": "set",
+          "field": "stage12",
+          "value": {
+            "status": "completed_with_limitations",
+            "guide": "STAGE12_DISASTER_RECOVERY.md",
+            "backup_tool": "tools/stage12_backup.py",
+            "recovery_tool": "tools/stage11_recover.py",
+            "backup_format": "ai_memory_offline_backup_v1",
+            "primary_repository": "SadnesstheMan/ai-memory-experiment",
+            "purpose": "Portable off-GitHub backup and disaster recovery after simulated primary loss.",
+            "verified_ci_baseline": {
+              "workflow_run": "https://github.com/SadnesstheMan/ai-memory-experiment/actions/runs/42158436805",
+              "result": "success",
+              "head_commit": "b827d76bf15eb95ee82da1686b94984efaa8831a",
+              "scope": "Simulated disposable-source deletion, offline ZIP recovery, checksum mismatch rejection; not a genuine independent-storage outage."
+            },
+            "checks": {
+              "portable_export_and_manifest": "passed_ci_and_user_reported",
+              "corruption_rejection": "passed_ci_simulation",
+              "isolated_loss_restore": "passed_ci_simulation",
+              "independent_backup_copy": "not_verified_separate_device_or_provider",
+              "offline_external_backup_recovery": "not_verified_from_independent_device_or_provider",
+              "canonical_integrity_workflow": "passed_revision_18",
+              "local_offline_recovery": "passed_user_reported_from_separate_local_folder"
+            },
+            "limitations": "Backups are produced on demand, not automatically synchronized. No external independently accessible backup store has been connected or verified. In-archive checksums are not a cryptographic authenticity signature.",
+            "configured_at": "2026-11-06T03:46:08.461Z",
+            "completion": {
+              "status": "closed_at_user_request_with_unverified_independent_storage",
+              "closed_at": "2026-11-06T04:04:58.991Z",
+              "evidence": {
+                "portable_export": "GitHub Actions simulated export passed; user confirmed Windows export and verification succeeded.",
+                "real_offline_test": "User reported disconnecting internet, verifying a backup ZIP stored in a separate folder on the same computer, restoring JSON, checking Stage 11 history, and obtaining a byte-for-byte match.",
+                "independent_failure_domain": "Not established: separate local folder does not protect against loss of same computer or drive.",
+                "continuous_replication": "Not configured; backups require fresh exports."
+              },
+              "outstanding": [
+                "Independent device or provider backup placement",
+                "Restore drill from a physically or administratively independent copy"
+              ],
+              "notes": "Stage 12 closed for progression at explicit user request; this is not a claim of fully verified physical/off-site disaster resilience."
+            }
+          }
+        },
+        {
+          "op": "set",
+          "field": "stage13",
+          "value": {
+            "status": "prepared_not_verified",
+            "guide": "STAGE13_BACKUP_FRESHNESS.md",
+            "auditor": "tools/stage13_backup_audit.py",
+            "backup_tool": "tools/stage12_backup.py",
+            "objective": "Measure backup revision lag and export age, manage multi-generation copies, and verify recovery from independently stored backup media.",
+            "baseline_validation": {
+              "ci_commit": "863003fc83a24c05b0d8b38ac5d28076a354cebb",
+              "run": "https://github.com/SadnesstheMan/ai-memory-experiment/actions/runs/42160264118",
+              "conclusion": "success",
+              "scope": "Isolated valid ZIP, stale-age and synthetic revision-lag checks only; no offsite backup destination configured."
+            },
+            "checks": {
+              "valid_current_backup_audit": "passed_ci_fixture",
+              "stale_age_detection": "passed_ci_fixture",
+              "revision_lag_detection": "passed_ci_fixture",
+              "multiple_generations_preserved": "not_tested",
+              "independent_storage_replication": "not_verified",
+              "independent_offline_restore": "not_verified",
+              "scheduled_freshness_monitor": "not_configured",
+              "recurring_restore_drill": "not_configured",
+              "canonical_integrity_workflow": "awaiting_revision_19_validation"
+            },
+            "limitations": "No scheduler or independent storage was connected by this setup. A ZIP in a local folder or GitHub Actions artifact does not establish external redundancy; --current must refer to a freshly retrieved source to prove live freshness.",
+            "initialized_at": "2026-11-06T04:04:58.991Z"
           }
         }
       ]
@@ -834,7 +945,7 @@
     }
   },
   "stage12": {
-    "status": "prepared_awaiting_independent_storage",
+    "status": "completed_with_limitations",
     "guide": "STAGE12_DISASTER_RECOVERY.md",
     "backup_tool": "tools/stage12_backup.py",
     "recovery_tool": "tools/stage11_recover.py",
@@ -848,14 +959,56 @@
       "scope": "Simulated disposable-source deletion, offline ZIP recovery, checksum mismatch rejection; not a genuine independent-storage outage."
     },
     "checks": {
-      "portable_export_and_manifest": "passed_ci_simulation",
+      "portable_export_and_manifest": "passed_ci_and_user_reported",
       "corruption_rejection": "passed_ci_simulation",
       "isolated_loss_restore": "passed_ci_simulation",
-      "independent_backup_copy": "not_verified",
-      "offline_external_backup_recovery": "not_verified",
-      "canonical_integrity_workflow": "awaiting_revision_18_validation"
+      "independent_backup_copy": "not_verified_separate_device_or_provider",
+      "offline_external_backup_recovery": "not_verified_from_independent_device_or_provider",
+      "canonical_integrity_workflow": "passed_revision_18",
+      "local_offline_recovery": "passed_user_reported_from_separate_local_folder"
     },
     "limitations": "Backups are produced on demand, not automatically synchronized. No external independently accessible backup store has been connected or verified. In-archive checksums are not a cryptographic authenticity signature.",
-    "configured_at": "2026-11-06T03:46:08.461Z"
+    "configured_at": "2026-11-06T03:46:08.461Z",
+    "completion": {
+      "status": "closed_at_user_request_with_unverified_independent_storage",
+      "closed_at": "2026-11-06T04:04:58.991Z",
+      "evidence": {
+        "portable_export": "GitHub Actions simulated export passed; user confirmed Windows export and verification succeeded.",
+        "real_offline_test": "User reported disconnecting internet, verifying a backup ZIP stored in a separate folder on the same computer, restoring JSON, checking Stage 11 history, and obtaining a byte-for-byte match.",
+        "independent_failure_domain": "Not established: separate local folder does not protect against loss of same computer or drive.",
+        "continuous_replication": "Not configured; backups require fresh exports."
+      },
+      "outstanding": [
+        "Independent device or provider backup placement",
+        "Restore drill from a physically or administratively independent copy"
+      ],
+      "notes": "Stage 12 closed for progression at explicit user request; this is not a claim of fully verified physical/off-site disaster resilience."
+    }
+  },
+  "stage13": {
+    "status": "prepared_not_verified",
+    "guide": "STAGE13_BACKUP_FRESHNESS.md",
+    "auditor": "tools/stage13_backup_audit.py",
+    "backup_tool": "tools/stage12_backup.py",
+    "objective": "Measure backup revision lag and export age, manage multi-generation copies, and verify recovery from independently stored backup media.",
+    "baseline_validation": {
+      "ci_commit": "863003fc83a24c05b0d8b38ac5d28076a354cebb",
+      "run": "https://github.com/SadnesstheMan/ai-memory-experiment/actions/runs/42160264118",
+      "conclusion": "success",
+      "scope": "Isolated valid ZIP, stale-age and synthetic revision-lag checks only; no offsite backup destination configured."
+    },
+    "checks": {
+      "valid_current_backup_audit": "passed_ci_fixture",
+      "stale_age_detection": "passed_ci_fixture",
+      "revision_lag_detection": "passed_ci_fixture",
+      "multiple_generations_preserved": "not_tested",
+      "independent_storage_replication": "not_verified",
+      "independent_offline_restore": "not_verified",
+      "scheduled_freshness_monitor": "not_configured",
+      "recurring_restore_drill": "not_configured",
+      "canonical_integrity_workflow": "awaiting_revision_19_validation"
+    },
+    "limitations": "No scheduler or independent storage was connected by this setup. A ZIP in a local folder or GitHub Actions artifact does not establish external redundancy; --current must refer to a freshly retrieved source to prove live freshness.",
+    "initialized_at": "2026-11-06T04:04:58.991Z"
   }
 }
