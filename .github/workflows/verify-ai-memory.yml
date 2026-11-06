@@ -4,6 +4,7 @@ on:
     paths:
       - ai_memory.json
       - .github/workflows/verify-ai-memory.yml
+      - tools/stage11_recover.py
   workflow_dispatch:
 permissions:
   contents: read
@@ -41,4 +42,19 @@ jobs:
               datetime.fromisoformat(event["timestamp"].replace("Z", "+00:00"))
           assert memory["last_updated"] == history[-1]["timestamp"], "last_updated mismatch"
           print("Validation passed:", rev, "revisions", len(history), "events")
+          PY
+      - name: Verify self-contained Stage 11 replay
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m = json.loads(Path("ai_memory.json").read_text(encoding="utf-8"))
+          if m.get("revision", 0) >= 15:
+              from tools.stage11_recover import reconstruct
+              recovered = reconstruct(m)
+              assert recovered == m
+              print("Stage 11 offline recovery PASS")
+          else:
+              print("Stage 11 not yet initialized; historical format valid")
           PY
