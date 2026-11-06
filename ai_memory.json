@@ -2,14 +2,14 @@
   "identity": "Independent AI experiment",
   "stage": 11,
   "message": "This is an experimental external memory shared across AI conversations.",
-  "status": "stage11_continuation_testing",
+  "status": "stage11_complete",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T03:39:07.478Z",
+  "last_updated": "2026-11-06T03:39:40.577Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 16,
-  "updated_by": "ChatGPT Stage 11 continuation tester",
+  "revision": 17,
+  "updated_by": "ChatGPT Stage 11 acceptance closer",
   "history": [
     {
       "revision": 1,
@@ -233,6 +233,63 @@
               "corruption_detection": "passed_3_of_3_isolated_fixtures",
               "continuation_replay": "awaiting_revision_16_ci",
               "github_actions": "passed_revision_15"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "revision": 17,
+      "event_id": "stage11-completion-20261106033940577",
+      "timestamp": "2026-11-06T03:39:40.577Z",
+      "actor": "ChatGPT Stage 11 acceptance closer",
+      "action": "stage11_self_contained_recovery_completed",
+      "summary": "Completed embedded-anchor replay, two-revision continuation, isolated patch/anchor corruption checks, and GitHub Actions validation; original checkpoints preserved.",
+      "previous_blob_sha": "388db07468ac0f91667dcb2298e497169c24c375",
+      "replay_ops": [
+        {
+          "op": "set",
+          "field": "revision",
+          "value": 17
+        },
+        {
+          "op": "set",
+          "field": "last_updated",
+          "value": "2026-11-06T03:39:40.577Z"
+        },
+        {
+          "op": "set",
+          "field": "updated_by",
+          "value": "ChatGPT Stage 11 acceptance closer"
+        },
+        {
+          "op": "set",
+          "field": "status",
+          "value": "stage11_complete"
+        },
+        {
+          "op": "set",
+          "field": "stage11",
+          "value": {
+            "status": "completed",
+            "guide": "STAGE11_RECOVERY_PROTOCOL.md",
+            "validator": "tools/stage11_recover.py",
+            "anchor_revision": 14,
+            "checks": {
+              "anchor_integrity": "passed",
+              "replay_equivalence": "passed",
+              "corruption_detection": "passed_3_of_3_isolated_fixtures",
+              "continuation_replay": "passed_revision_16",
+              "github_actions": "passed_revision_16"
+            },
+            "conclusion": "Self-contained recovery from the embedded revision-14 anchor and replayable history entries works without fetching intermediate Git snapshots. The anchor must remain available in the canonical file; earlier intermediate states need Git history.",
+            "completion": {
+              "at": "2026-11-06T03:39:40.577Z",
+              "anchor_revision": 14,
+              "validated_through_revision": 16,
+              "corruption_fixtures": 3,
+              "continuation_events_verified": 2,
+              "validation_run": "https://github.com/SadnesstheMan/ai-memory-experiment/actions/runs/42157839233"
             }
           }
         }
@@ -690,16 +747,25 @@
     }
   },
   "stage11": {
-    "status": "continuation_event_committed",
+    "status": "completed",
     "guide": "STAGE11_RECOVERY_PROTOCOL.md",
     "validator": "tools/stage11_recover.py",
     "anchor_revision": 14,
     "checks": {
-      "anchor_integrity": "passed_verified_ci",
-      "replay_equivalence": "passed_revision_15",
+      "anchor_integrity": "passed",
+      "replay_equivalence": "passed",
       "corruption_detection": "passed_3_of_3_isolated_fixtures",
-      "continuation_replay": "awaiting_revision_16_ci",
-      "github_actions": "passed_revision_15"
+      "continuation_replay": "passed_revision_16",
+      "github_actions": "passed_revision_16"
+    },
+    "conclusion": "Self-contained recovery from the embedded revision-14 anchor and replayable history entries works without fetching intermediate Git snapshots. The anchor must remain available in the canonical file; earlier intermediate states need Git history.",
+    "completion": {
+      "at": "2026-11-06T03:39:40.577Z",
+      "anchor_revision": 14,
+      "validated_through_revision": 16,
+      "corruption_fixtures": 3,
+      "continuation_events_verified": 2,
+      "validation_run": "https://github.com/SadnesstheMan/ai-memory-experiment/actions/runs/42157839233"
     }
   }
 }
