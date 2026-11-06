@@ -97,9 +97,32 @@ def main():
     parser = argparse.ArgumentParser(description="Verify self-contained Stage 11 recovery")
     parser.add_argument("memory", nargs="?", default="ai_memory.json")
     parser.add_argument("--output", help="Optional local reconstructed JSON output")
+    parser.add_argument("--self-test", action="store_true", help="Run isolated corruption-detection fixtures")
     args = parser.parse_args()
     original = json.loads(Path(args.memory).read_text(encoding="utf-8"))
     result = reconstruct(original)
+    if args.self_test:
+        examples = []
+        changed_patch = copy.deepcopy(original)
+        for op in changed_patch["history"][-1]["replay_ops"]:
+            if op.get("field") == "status" and op.get("op") == "set":
+                op["value"] = "TAMPERED_FIXTURE_VALUE"
+                break
+        examples.append(("changed_replay_value", changed_patch))
+        missing_patch = copy.deepcopy(original)
+        missing_patch["history"][-1].pop("replay_ops", None)
+        examples.append(("missing_replay_patch", missing_patch))
+        damaged_anchor = copy.deepcopy(original)
+        damaged_anchor["recovery"]["anchor_snapshot"]["checkpoint"] = "CORRUPTED"
+        examples.append(("tampered_anchor", damaged_anchor))
+        for name, fixture in examples:
+            try:
+                reconstruct(fixture)
+            except ValueError:
+                print("REJECTED isolated corruption fixture:", name)
+            else:
+                raise AssertionError("Corrupted fixture passed validation: " + name)
+        print("ISOLATED CORRUPTION TESTS PASS:", len(examples), "of", len(examples))
     if args.output:
         Path(args.output).write_bytes(serialized(result))
     print("STAGE 11 REPLAY PASS: restored revision", result["revision"],
