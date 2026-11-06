@@ -55,6 +55,8 @@ jobs:
               recovered = reconstruct(m)
               assert recovered == m
               print("Stage 11 offline recovery PASS")
+              import subprocess
+              subprocess.run(["python", "tools/stage11_recover.py", "ai_memory.json", "--self-test"], check=True)
           else:
               print("Stage 11 not yet initialized; historical format valid")
           PY
