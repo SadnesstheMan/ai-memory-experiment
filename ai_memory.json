@@ -4,12 +4,12 @@
   "message": "This is an experimental external memory shared across AI conversations.",
   "status": "stage8_partially_verified",
   "checkpoint": "STAGE5_26f323ae91a5415abcf650b7d8a9b5ba",
-  "last_updated": "2026-11-06T02:53:19.207Z",
+  "last_updated": "2026-11-06T02:58:56.493Z",
   "experiment": "browser_only_cross_instance_retrieval",
   "stage6_handoff": "STAGE6_HANDOFF_mw4cygv9-rrdphnh0xe-9x7trxfugj-875gobd6ur-k0z0ah26lk",
   "schema_version": 1,
-  "revision": 5,
-  "updated_by": "ChatGPT Stage 8 verification",
+  "revision": 6,
+  "updated_by": "ChatGPT Stage 8 dashboard verification",
   "history": [
     {
       "revision": 1,
@@ -55,6 +55,15 @@
       "action": "stage8_verification_results",
       "summary": "Confirmed Stage 8 cross-instance SHA-safe write and successful GitHub Actions validation of revision 4; live browser monitor and no-access fallback remain unverified.",
       "previous_blob_sha": "07efd603bfbd656cdc182251350cf43b097c2300"
+    },
+    {
+      "revision": 6,
+      "event_id": "stage8-dashboard-confirmed-20261106025856493",
+      "timestamp": "2026-11-06T02:58:56.493Z",
+      "actor": "ChatGPT Stage 8 dashboard verification",
+      "action": "stage8_dashboard_auto_refresh_verified",
+      "summary": "Recorded user's confirmation that the live browser dashboard detected a GitHub memory change without manual refresh; no-GitHub fallback remains untested.",
+      "previous_blob_sha": "fbfc558f58866cb9c48d6dfbbf82c883f2b6bc2f"
     }
   ],
   "stage7_test_nonce": "STAGE7_nMTDWYRIs6TF3Mr91lPpQ-laMW__yg6Xyy3kgESZg9A",
@@ -69,12 +78,12 @@
       "checks": {
         "cold_start_read": "passed",
         "cross_instance_write": "passed",
-        "automatic_monitor": "not_verified",
+        "automatic_monitor": "passed",
         "integrity_workflow": "passed_revision_4",
         "no_github_fallback": "not_verified"
       },
-      "notes": "Fresh GitHub retrieval and SHA-safe update to revision 4 were independently verified. GitHub Actions validation for revision 4 completed successfully (run 42153082813). Browser auto-refresh and no-GitHub fallback remain untested. This revision 5 records the results.",
-      "checked_at": "2026-11-06T02:53:19.207Z"
+      "notes": "Fresh GitHub read, SHA-safe cross-instance write, historical checkpoint preservation, and GitHub Actions validation passed. User confirmed the live dashboard detected the updated revision without manual refresh. Missing-GitHub fallback remains unverified.",
+      "checked_at": "2026-11-06T02:58:56.493Z"
     }
   }
 }
